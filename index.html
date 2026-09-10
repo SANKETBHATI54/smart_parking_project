@@ -1,0 +1,4945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Park - Futuristic Autonomous Parking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    font-family: "Inter", Arial, sans-serif;
+    color: #172033;
+}
+
+body {
+    background:
+        linear-gradient(rgba(24, 157, 203, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 157, 203, 0.07) 1px, transparent 1px),
+        radial-gradient(circle at 5% 15%, rgba(0, 190, 230, 0.20), transparent 28%),
+        radial-gradient(circle at 95% 70%, rgba(100, 80, 255, 0.15), transparent 28%),
+        #f4fbfe;
+
+    background-size: 27px 27px;
+}
+
+/* =========================
+   TOP NAVIGATION
+========================= */
+
+.topbar {
+    height: 104px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #dceaf0;
+
+    display: flex;
+    align-items: center;
+}
+
+.topbar-inner {
+    width: min(1120px, calc(100% - 48px));
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-mark {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 15px;
+
+    display: grid;
+    place-items: center;
+
+    background: linear-gradient(135deg, #5149ee, #2276f2);
+
+    color: white;
+
+    border: 3px solid #70dff1;
+
+    font-size: 22px;
+
+    box-shadow: 0 9px 18px rgba(44, 91, 235, 0.25);
+}
+
+.brand-name {
+    font-size: 24px;
+    font-weight: 900;
+    color: #29458f;
+}
+
+.brand-sub {
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: 1.3px;
+
+    color: #08a4c5;
+
+    font-weight: 800;
+}
+
+.top-actions {
+    display: flex;
+    gap: 14px;
+}
+
+.outline-btn {
+    padding: 11px 17px;
+
+    border: 1px solid #bdeefa;
+
+    border-radius: 15px;
+
+    background: white;
+
+    color: #354052;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(40, 160, 194, 0.07);
+}
+
+.outline-btn:hover {
+    background: #f4fcff;
+}
+
+.danger-text {
+    color: #ef4560;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    width: min(1120px, calc(100% - 48px));
+    margin: auto;
+
+    padding: 38px 0 70px;
+}
+
+.page-head,
+.customer-head {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 34px;
+
+    line-height: 1.15;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    margin: 0;
+}
+
+.page-subtitle,
+.customer-head p {
+    font-size: 17px;
+
+    color: #697589;
+
+    font-weight: 500;
+
+    margin: 7px 0 0;
+}
+
+/* =========================
+   ADMIN TABS
+========================= */
+
+.glass-tabs {
+    display: flex;
+
+    gap: 3px;
+
+    padding: 5px;
+
+    border: 1px solid #bdebf6;
+
+    background: rgba(255, 255, 255, 0.85);
+
+    border-radius: 16px;
+
+    overflow: auto;
+}
+
+.tab {
+    white-space: nowrap;
+
+    padding: 11px 15px;
+
+    border-radius: 12px;
+
+    background: transparent;
+
+    color: #536075;
+
+    font-weight: 800;
+
+    font-size: 13px;
+
+    border: 0;
+
+    cursor: pointer;
+}
+
+.tab.active {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #0b9fbd,
+        #4a45e9
+    );
+
+    box-shadow: 0 7px 17px rgba(51, 93, 232, 0.25);
+}
+
+/* =========================
+   STAT CARDS
+========================= */
+
+.grid-4 {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.stat-card {
+    min-height: 106px;
+
+    background: rgba(255, 255, 255, 0.87);
+
+    border: 1px solid #dce8ef;
+
+    border-radius: 22px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    box-shadow: 0 8px 24px rgba(37, 76, 104, 0.09);
+}
+
+.stat-card.cyan {
+    border-color: #bdeef7;
+
+    background: linear-gradient(
+        135deg,
+        rgba(17, 181, 218, 0.10),
+        white
+    );
+}
+
+.stat-card.green {
+    border-color: #c6f0df;
+
+    background: linear-gradient(
+        135deg,
+        rgba(16, 185, 129, 0.09),
+        white
+    );
+}
+
+.stat-card.amber {
+    border-color: #f6e5ae;
+
+    background: linear-gradient(
+        135deg,
+        rgba(245, 158, 11, 0.09),
+        white
+    );
+}
+
+.stat-card.indigo {
+    border-color: #dce0ff;
+
+    background: linear-gradient(
+        135deg,
+        rgba(79, 70, 229, 0.08),
+        white
+    );
+}
+
+.stat-label {
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.9px;
+
+    color: #8b96a8;
+}
+
+.stat-value {
+    font-size: 29px;
+
+    font-weight: 900;
+
+    margin-top: 7px;
+}
+
+.stat-value small {
+    font-size: 13px;
+
+    color: #98a2b2;
+}
+
+.stat-icon {
+    width: 51px;
+    height: 51px;
+
+    border-radius: 16px;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 24px;
+}
+
+.cyan .stat-icon {
+    background: #e9fbff;
+
+    color: #08a3c5;
+}
+
+.green .stat-icon {
+    background: #eafaf3;
+
+    color: #08a873;
+}
+
+.amber .stat-icon {
+    background: #fff9e7;
+
+    color: #ef9400;
+}
+
+.indigo .stat-icon {
+    background: #eef0ff;
+
+    color: #4b45e8;
+}
+
+/* =========================
+   CHARTS
+========================= */
+
+.chart-grid {
+    display: grid;
+
+    grid-template-columns: 1.55fr 1fr;
+
+    gap: 28px;
+
+    margin-top: 30px;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.88);
+
+    border: 1px solid #dbe7ed;
+
+    border-radius: 22px;
+
+    box-shadow: 0 18px 45px rgba(37, 76, 104, 0.10);
+
+    padding: 24px;
+}
+
+.panel-title {
+    font-size: 18px;
+
+    font-weight: 900;
+
+    margin: 0 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.ico {
+    color: #009fc1;
+}
+
+.chart-box {
+    height: 300px;
+}
+
+.chart-box canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================
+   DONUT
+========================= */
+
+.donut-wrap {
+    height: 300px;
+
+    display: grid;
+
+    place-items: center;
+
+    position: relative;
+}
+
+.donut {
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #10b981 0 73%,
+            #f59e0b 73% 100%
+        );
+
+    position: relative;
+}
+
+.donut::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 42px;
+
+    border-radius: 50%;
+
+    background: white;
+}
+
+.donut-center {
+    position: absolute;
+
+    text-align: center;
+}
+
+.donut-center strong {
+    font-size: 27px;
+}
+
+.donut-center span {
+    display: block;
+
+    font-size: 11px;
+
+    color: #8b96a8;
+
+    font-weight: 700;
+}
+
+.legend {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+    margin-top: -30px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    margin-right: 5px;
+}
+
+.dot.green {
+    background: #10b981;
+}
+
+.dot.amber {
+    background: #f59e0b;
+}
+
+.dot.red {
+    background: #ef4444;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-panel {
+    margin-bottom: 25px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1.3fr
+        0.8fr
+        auto;
+
+    gap: 14px;
+
+    align-items: end;
+}
+
+.field label {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #536075;
+
+    margin-bottom: 7px;
+}
+
+.field input {
+    width: 100%;
+
+    height: 47px;
+
+    border: 1px solid #cfe5ed;
+
+    border-radius: 14px;
+
+    padding: 0 14px;
+
+    background: white;
+
+    color: #263246;
+
+    outline: none;
+}
+
+.field input:focus {
+    border-color: #52d7ee;
+
+    box-shadow: 0 0 0 4px rgba(19, 184, 218, 0.10);
+}
+
+.primary-btn {
+    height: 47px;
+
+    padding: 0 19px;
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-weight: 800;
+
+    background: linear-gradient(
+        135deg,
+        #0a9fbd,
+        #315df1
+    );
+
+    box-shadow: 0 10px 20px rgba(36, 113, 235, 0.22);
+
+    border: 0;
+
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* =========================
+   SECTION HEADINGS
+========================= */
+
+.section-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.section-heading h3 {
+    font-size: 20px;
+
+    font-weight: 900;
+
+    margin: 0;
+}
+
+.search {
+    width: 280px;
+
+    height: 43px;
+
+    border: 1px solid #d5e6ed;
+
+    background: white;
+
+    border-radius: 13px;
+
+    padding: 0 14px;
+
+    outline: none;
+}
+
+.search:focus {
+    border-color: #55d5eb;
+}
+
+/* =========================
+   PARKING LOTS
+========================= */
+
+.lot-grid {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 15px;
+}
+
+.lot-card {
+    padding: 17px;
+
+    background: white;
+
+    border: 1px solid #dbe5eb;
+
+    border-radius: 17px;
+
+    box-shadow: 0 5px 15px rgba(20, 70, 100, 0.05);
+}
+
+.lot-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 6px;
+}
+
+.lot-number {
+    font-size: 18px;
+
+    font-weight: 900;
+}
+
+.status {
+    font-size: 9px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    padding: 5px 8px;
+
+    border-radius: 999px;
+}
+
+.status.available {
+    background: #e9faf3;
+
+    color: #07895f;
+}
+
+.status.booked {
+    background: #fff4d8;
+
+    color: #b87500;
+}
+
+.status.maintenance {
+    background: #fff0f0;
+
+    color: #c93636;
+}
+
+.lot-location {
+    font-size: 11px;
+
+    color: #7b8798;
+
+    margin: 9px 0 4px;
+}
+
+.lot-price {
+    font-size: 14px;
+
+    color: #0098bb;
+
+    font-weight: 900;
+}
+
+.lot-actions {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 14px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #edf1f3;
+}
+
+.small-btn,
+.action-btn {
+    padding: 8px 10px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    background: #f2fbff;
+
+    color: #078bab;
+
+    cursor: pointer;
+}
+
+.small-btn.warn {
+    background: #fff8e8;
+
+    color: #d18a00;
+}
+
+.small-btn.ok,
+.action-btn.verify {
+    background: #eafaf2;
+
+    color: #07895f;
+}
+
+.small-btn.delete {
+    margin-left: auto;
+
+    background: #fff0f0;
+
+    color: #d83c4c;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table-wrap {
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 760px;
+}
+
+th {
+    text-align: left;
+
+    padding: 0 12px 13px;
+
+    color: #929bab;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    border-bottom: 1px solid #e5ebef;
+}
+
+td {
+    padding: 15px 12px;
+
+    border-bottom: 1px solid #eef2f4;
+
+    font-size: 13px;
+
+    color: #586476;
+
+    font-weight: 500;
+}
+
+td strong {
+    color: #182235;
+
+    font-weight: 900;
+}
+
+tbody tr:hover {
+    background: #f3fbfe;
+}
+
+.id {
+    font-family: monospace;
+
+    color: #059cbc;
+
+    font-weight: 900;
+}
+
+.money {
+    color: #069765;
+
+    font-weight: 900;
+}
+
+.action-btn {
+    background: #fff0f0;
+
+    color: #dc3d50;
+}
+
+.empty {
+    text-align: center;
+
+    padding: 35px;
+
+    color: #8b95a5;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-page {
+    min-height: 100vh;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 28px;
+}
+
+.login-card {
+    width: min(530px, 100%);
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border: 1px solid #e1eaf0;
+
+    border-radius: 28px;
+
+    padding: 28px;
+
+    box-shadow: 0 30px 70px rgba(30, 80, 110, 0.12);
+}
+
+.login-logo {
+    width: 76px;
+    height: 76px;
+
+    border-radius: 25px;
+
+    margin: 0 auto 25px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: #e8f8ff;
+
+    color: #079fc0;
+
+    font-size: 38px;
+
+    box-shadow: 0 0 0 8px rgba(210, 245, 255, 0.45);
+}
+
+.login-title {
+    text-align: center;
+
+    font-size: 34px;
+
+    font-weight: 900;
+
+    letter-spacing: -1.1px;
+
+    margin: 0;
+}
+
+.login-sub {
+    text-align: center;
+
+    color: #737e90;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    margin: 8px 0 35px;
+}
+
+.login-tabs {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    background: #f4f5f6;
+
+    border: 1px solid #e7e8e9;
+
+    border-radius: 19px;
+
+    padding: 5px;
+
+    margin-bottom: 30px;
+}
+
+.login-tab {
+    height: 57px;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    background: transparent;
+
+    color: #737d8d;
+
+    font-weight: 900;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.login-tab.active {
+    background: white;
+
+    color: #087f9c;
+
+    box-shadow: 0 6px 13px rgba(20, 40, 60, 0.10);
+}
+
+.login-form .field {
+    margin-bottom: 20px;
+}
+
+.login-form .field label {
+    font-size: 16px;
+
+    color: #394457;
+}
+
+.login-form input {
+    height: 61px;
+
+    border-color: #bcebf4;
+
+    border-radius: 16px;
+
+    font-size: 16px;
+
+    padding: 0 20px;
+}
+
+.login-submit {
+    width: 100%;
+
+    height: 70px;
+
+    border-radius: 16px;
+
+    margin-top: 10px;
+
+    font-size: 18px;
+}
+
+.demo-note {
+    text-align: center;
+
+    font-size: 11px;
+
+    color: #8993a3;
+}
+
+/* =========================
+   CUSTOMER SLOT SCREEN
+========================= */
+
+.customer-head h1 {
+    font-size: 32px;
+
+    font-weight: 900;
+
+    margin: 0;
+}
+
+.profile-pill {
+    padding: 11px 17px;
+
+    border-radius: 15px;
+
+    background: white;
+
+    border: 1px solid #c9edf5;
+
+    font-weight: 800;
+}
+
+.status-key {
+    display: flex;
+
+    gap: 20px;
+
+    align-items: center;
+
+    padding: 10px 15px;
+
+    border-radius: 15px;
+
+    background: white;
+
+    border: 1px solid #c9edf5;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.key-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.key-circle {
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #10b981;
+}
+
+.key-circle.booked {
+    background: #e0e4e8;
+}
+
+.key-circle.selected {
+    background: #087fa4;
+}
+
+.slot-panel {
+    padding: 38px;
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    border: 1px solid #dbe7ed;
+
+    box-shadow: 0 18px 45px rgba(37, 76, 104, 0.10);
+}
+
+.slot-grid {
+    display: grid;
+
+    grid-template-columns: repeat(10, 1fr);
+
+    gap: 15px;
+}
+
+.slot {
+    min-height: 120px;
+
+    border-radius: 16px;
+
+    border: 1px solid #c8dfe8;
+
+    background: #f7fafb;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    transition: 0.2s;
+
+    color: #b9c2cd;
+}
+
+.slot.available {
+    background: white;
+
+    border-color: #16c99a;
+
+    color: #05b783;
+
+    cursor: pointer;
+}
+
+.slot.available:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 9px 20px rgba(16, 185, 129, 0.15);
+}
+
+.slot.selected {
+    background: linear-gradient(160deg, #079ab9, #285ce8);
+
+    border-color: #087fa4;
+
+    color: white;
+
+    box-shadow: 0 12px 22px rgba(8, 127, 164, 0.25);
+}
+
+.slot:disabled {
+    cursor: not-allowed;
+}
+
+.car-icon {
+    font-size: 22px;
+}
+
+.slot strong {
+    font-size: 16px;
+}
+
+.price-pill {
+    font-size: 10px;
+
+    font-weight: 900;
+
+    background: #dff9ed;
+
+    color: #07895f;
+
+    padding: 4px 8px;
+
+    border-radius: 999px;
+}
+
+.selected .price-pill {
+    background: rgba(255, 255, 255, 0.20);
+
+    color: white;
+}
+
+.booking-bar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 22px;
+
+    padding: 18px 20px;
+
+    background: white;
+
+    border: 1px solid #dce8ee;
+
+    border-radius: 17px;
+}
+
+.booking-info {
+    font-weight: 800;
+}
+
+.booking-info span {
+    color: #078eae;
+}
+
+.booking-bar .primary-btn:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    background: #172033;
+
+    color: white;
+
+    padding: 13px 17px;
+
+    border-radius: 13px;
+
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    pointer-events: none;
+
+    transition: 0.25s;
+
+    z-index: 100;
+}
+
+.toast.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lot-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .slot-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .page-head {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .topbar {
+        height: auto;
+
+        padding: 15px 0;
+    }
+
+    .topbar-inner,
+    .main {
+        width: calc(100% - 26px);
+    }
+
+    .brand-name {
+        font-size: 20px;
+    }
+
+    .top-actions .outline-btn {
+        padding: 9px 11px;
+
+        font-size: 11px;
+    }
+
+    .main {
+        padding-top: 25px;
+    }
+
+    .page-title {
+        font-size: 28px;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+    }
+
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 17px;
+    }
+
+    .chart-box,
+    .donut-wrap {
+        height: 245px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lot-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section-heading {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .slot-panel {
+        padding: 18px;
+    }
+
+    .slot-grid {
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 10px;
+    }
+
+    .slot {
+        min-height: 105px;
+    }
+
+    .customer-head {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .status-key {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .booking-bar {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .login-card {
+        padding: 22px 18px;
+    }
+
+    .login-title {
+        font-size: 28px;
+    }
+}
+/* =========================================================
+   SECURE CHECKOUT + QR TICKET
+========================================================= */
+
+.customer-main {
+    padding-bottom: 145px;
+}
+
+.fixed-booking-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    margin: 0;
+    min-height: 86px;
+    padding: 12px 32px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    box-shadow: 0 -8px 30px rgba(35, 72, 98, 0.10);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+}
+
+.fixed-booking-bar .booking-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.selected-label {
+    color: #8b98a8;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    font-weight: 800;
+}
+
+.selected-price {
+    color: #087fa4;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.booking-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.secondary-btn {
+    min-width: 94px;
+    min-height: 49px;
+    padding: 12px 20px;
+    border: 1px solid #bcecf6;
+    border-radius: 12px;
+    background: #fff;
+    color: #263246;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(35, 76, 105, 0.06);
+}
+
+.secondary-btn:hover {
+    background: #f5fcff;
+}
+
+.payment-btn {
+    min-width: 245px;
+}
+
+.payment-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.checkout-page,
+.ticket-page {
+    min-height: 100vh;
+    padding: 14px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout-card {
+    width: min(420px, 100%);
+    padding: 38px 39px 28px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid #dce9ef;
+    box-shadow: 0 20px 55px rgba(37, 76, 104, 0.13);
+}
+
+.checkout-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.checkout-title-row h1 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    font-weight: 900;
+    color: #182033;
+}
+
+.checkout-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: #eafcff;
+    border: 1px solid #d5f4fa;
+    color: #009cc2;
+    font-size: 23px;
+}
+
+.checkout-summary {
+    padding: 17px 22px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #effaff, #eef5ff);
+    border: 1px solid #c8eff9;
+    margin-bottom: 23px;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: #445066;
+    font-size: 14px;
+}
+
+.summary-row strong {
+    background: white;
+    color: #0a7599;
+    padding: 8px 14px;
+    border-radius: 13px;
+}
+
+.summary-row.amount-row strong {
+    background: transparent;
+    color: #17506a;
+    padding: 0;
+    font-size: 27px;
+}
+
+.summary-divider {
+    height: 1px;
+    background: #cbe8f0;
+    margin: 12px 0;
+}
+
+.checkout-label {
+    display: block;
+    margin: 0 0 9px;
+    color: #364257;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 5px;
+    margin-bottom: 23px;
+    border-radius: 15px;
+    background: #f1f3f6;
+    box-shadow: inset 0 1px 5px rgba(32, 48, 65, 0.07);
+}
+
+.payment-method {
+    min-height: 40px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: #687386;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.payment-method.active {
+    color: #147795;
+    background: white;
+    box-shadow: 0 3px 8px rgba(31, 55, 73, 0.10);
+}
+
+.payment-fields {
+    margin-bottom: 26px;
+}
+
+.payment-input {
+    width: 100%;
+    height: 47px;
+    padding: 0 14px;
+    border: 1px solid #bcebf5;
+    border-radius: 12px;
+    background: white;
+    color: #293448;
+    font: inherit;
+    outline: none;
+}
+
+.payment-input:focus {
+    border-color: #19afd0;
+    box-shadow: 0 0 0 3px rgba(25, 175, 208, 0.10);
+}
+
+.payment-mini-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.upi-chips {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.upi-chips button {
+    border: 1px solid #e2e6eb;
+    border-radius: 999px;
+    background: #f6f7f9;
+    color: #596477;
+    padding: 7px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.checkout-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.checkout-back,
+.pay-btn {
+    width: 100%;
+}
+
+.demo-payment-note {
+    text-align: center;
+    margin: 18px 0 0;
+    color: #8994a4;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.ticket-page {
+    justify-content: flex-start;
+    padding-top: 3px;
+}
+
+.ticket-card {
+    width: min(420px, 100%);
+    overflow: hidden;
+    border-radius: 22px;
+    background: white;
+    box-shadow: 0 20px 55px rgba(37, 76, 104, 0.13);
+}
+
+.ticket-success-head {
+    min-height: 188px;
+    padding: 28px 20px 24px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #12ad86, #42b6aa);
+}
+
+.success-check {
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 13px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.10);
+    font-size: 39px;
+    font-weight: 400;
+}
+
+.ticket-success-head h1 {
+    margin: 0;
+    font-size: 26px;
+    letter-spacing: 2px;
+    font-weight: 900;
+}
+
+.ticket-success-head p {
+    margin: 7px 0 0;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ticket-body {
+    position: relative;
+    padding: 31px 30px 0;
+}
+
+.ticket-top-meta,
+.ticket-details-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.ticket-top-meta span,
+.ticket-details-row span,
+.customer-ticket-box span {
+    display: block;
+    margin-bottom: 6px;
+    color: #8290a3;
+    font-size: 10px;
+    letter-spacing: 0.7px;
+    font-weight: 800;
+}
+
+.ticket-top-meta strong {
+    display: block;
+    color: #111c31;
+    font-size: 31px;
+    line-height: 1;
+}
+
+.ticket-amount {
+    text-align: right;
+}
+
+.ticket-amount strong {
+    color: #079b60;
+    font-size: 22px;
+}
+
+.customer-ticket-box {
+    margin: 26px 0;
+    padding: 17px 16px;
+    border: 1px solid #e7ebef;
+    border-radius: 15px;
+    background: #fbfcfd;
+    box-shadow: 0 2px 7px rgba(30, 55, 77, 0.05);
+}
+
+.customer-ticket-box strong {
+    color: #18233a;
+    font-size: 15px;
+}
+
+.ticket-details-row strong {
+    display: block;
+    color: #0d1c34;
+    font-size: 15px;
+}
+
+.ticket-booking-id {
+    text-align: right;
+}
+
+.ticket-booking-id strong {
+    color: #008bb5;
+    font-size: 10px;
+    word-break: break-all;
+}
+
+.ticket-qr-area {
+    position: relative;
+    margin: 30px -30px 0;
+    padding: 30px 20px 31px;
+    text-align: center;
+    background: #f7fafc;
+    border-top: 1px dashed #dce5ea;
+}
+
+.ticket-qr-area::before,
+.ticket-qr-area::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #eaf7fb;
+}
+
+.ticket-qr-area::before { left: -10px; }
+.ticket-qr-area::after { right: -10px; }
+
+.ticket-qr {
+    width: 146px;
+    min-height: 146px;
+    margin: 0 auto 15px;
+    padding: 9px;
+    display: grid;
+    place-items: center;
+    background: white;
+    border: 1px solid #e2e7eb;
+    border-radius: 16px;
+    box-shadow: 0 5px 14px rgba(31, 50, 67, 0.10);
+}
+
+.ticket-qr img,
+.ticket-qr canvas {
+    display: block;
+    max-width: 128px;
+    max-height: 128px;
+}
+
+.qr-fallback {
+    width: 128px;
+    height: 128px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background:
+        linear-gradient(90deg, #172033 10px, transparent 10px) 0 0 / 24px 24px,
+        linear-gradient(#172033 10px, transparent 10px) 0 0 / 24px 24px,
+        white;
+    color: white;
+    font-weight: 900;
+    border: 8px solid white;
+}
+
+.ticket-qr-area p {
+    margin: 0 0 5px;
+    color: #7c8798;
+    font-size: 10px;
+}
+
+.ticket-qr-area > strong {
+    color: #008bb5;
+    font-size: 10px;
+}
+
+.book-another-btn {
+    width: min(360px, 100%);
+    min-height: 55px;
+    margin-top: 29px;
+    border: 1px solid #009bc7;
+    border-radius: 12px;
+    background: white;
+    color: #007ea4;
+    font-weight: 800;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 145, 184, 0.08);
+}
+
+.book-another-btn:hover {
+    background: #f2fcff;
+}
+
+@media (max-width: 650px) {
+    .fixed-booking-bar {
+        padding: 11px 15px;
+    }
+
+    .fixed-booking-bar .booking-info {
+        max-width: 38%;
+    }
+
+    .booking-actions {
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .payment-btn {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .secondary-btn {
+        min-width: 80px;
+    }
+
+    .checkout-card {
+        padding: 28px 20px 23px;
+    }
+
+    .ticket-body {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    .ticket-qr-area {
+        margin-left: -22px;
+        margin-right: -22px;
+    }
+}
+
+    
+/* =========================
+   MODERN PARKING SLOT UI
+========================= */
+.customer-main {
+    padding-top: 42px;
+    padding-bottom: 135px;
+}
+.customer-head {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:28px;
+}
+.slot-panel {
+    padding:34px;
+    border-radius:28px;
+    background:rgba(255,255,255,.88);
+    border:1px solid #d7e9ef;
+    box-shadow:0 18px 45px rgba(31,76,105,.08);
+}
+.slot-grid {
+    display:grid;
+    grid-template-columns:repeat(10,minmax(76px,1fr));
+    gap:14px;
+}
+.slot {
+    position:relative;
+    min-height:116px;
+    padding:13px 8px 11px;
+    border-radius:18px;
+    border:1px solid #dfe7ec;
+    background:linear-gradient(145deg,#f5f8fa,#eef2f5);
+    color:#b5bec8;
+    cursor:not-allowed;
+    font-family:inherit;
+    appearance:none;
+    -webkit-appearance:none;
+}
+.slot.available {
+    background:linear-gradient(145deg,#ffffff,#f9fffd);
+    border:1.5px solid #12c99a;
+    color:#344054;
+    cursor:pointer;
+    box-shadow:0 5px 12px rgba(8,177,133,.05);
+}
+.slot.available:hover {
+    transform:translateY(-4px);
+    border-color:#00b889;
+    box-shadow:0 13px 25px rgba(8,177,133,.14);
+}
+.slot.available:active { transform:translateY(-1px) scale(.98); }
+.slot.selected {
+    background:linear-gradient(145deg,#0d9dbb,#2d5eea);
+    border:4px solid #78dfea;
+    color:#fff;
+    box-shadow:0 16px 30px rgba(34,91,220,.28);
+}
+.slot .car-icon {
+    width:40px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    font-size:24px;
+    color:#08b98b;
+}
+.slot:not(.available) .car-icon { color:#b9c2cb; }
+.slot strong {
+    font-size:17px;
+    font-weight:900;
+}
+.slot .price-pill {
+    padding:4px 9px;
+    background:#dcf8ed;
+    color:#008c67;
+}
+.slot.selected .price-pill {
+    background:rgba(255,255,255,.18);
+    color:#fff;
+}
+.slot:focus-visible {
+    outline:3px solid rgba(11,166,200,.25);
+    outline-offset:2px;
+}
+.status-key {
+    padding:13px 18px;
+    border-radius:17px;
+    box-shadow:0 5px 18px rgba(35,86,110,.05);
+}
+@media(max-width:1000px){
+    .slot-grid { grid-template-columns:repeat(5,minmax(76px,1fr)); }
+}
+@media(max-width:600px){
+    .customer-main { padding-top:25px; }
+    .customer-head { align-items:flex-start; }
+    .slot-panel { padding:16px; }
+    .slot-grid { grid-template-columns:repeat(3,1fr); gap:10px; }
+    .slot { min-height:102px; }
+}
+</style>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="toast" class="toast"></div>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+/* =========================================================
+   SMART PARKING
+   Plain JavaScript Version
+   ========================================================= */
+
+const STORAGE = {
+    lots: "smart_parking_lots",
+    bookings: "smart_parking_bookings",
+    customers: "smart_parking_customers",
+    session: "smart_parking_session"
+};
+
+
+/* =========================================================
+   DEFAULT DATA
+   ========================================================= */
+
+const defaultData = {
+
+    lots: [
+
+        {
+            id: 1,
+            number: "A-1",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "booked"
+        },
+
+        {
+            id: 2,
+            number: "A-2",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 3,
+            number: "A-3",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 4,
+            number: "A-4",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 5,
+            number: "A-5",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 6,
+            number: "A-6",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "booked"
+        },
+
+        {
+            id: 7,
+            number: "A-7",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 8,
+            number: "A-8",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 9,
+            number: "A-9",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 10,
+            number: "A-10",
+            location: "Zone 1, Level 1",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 11,
+            number: "A-11",
+            location: "Zone 1, Level 2",
+            price: 50,
+            status: "booked"
+        },
+
+        {
+            id: 12,
+            number: "A-12",
+            location: "Zone 1, Level 2",
+            price: 50,
+            status: "booked"
+        },
+
+        {
+            id: 13,
+            number: "A-13",
+            location: "Zone 1, Level 2",
+            price: 50,
+            status: "available"
+        },
+
+        {
+            id: 14,
+            number: "A-14",
+            location: "Zone 1, Level 2",
+            price: 50,
+            status: "booked"
+        },
+
+        {
+            id: 15,
+            number: "A-15",
+            location: "Zone 1, Level 2",
+            price: 50,
+            status: "available"
+        }
+
+    ],
+
+
+    bookings: [
+
+        {
+            id: "BK-1001",
+            lotNumber: "A-1",
+            customerName: "Rahul Sharma",
+            customerEmail: "rahul@example.com",
+            date: "10 Sep 2026",
+            amount: 50,
+            status: "active"
+        },
+
+        {
+            id: "BK-1002",
+            lotNumber: "A-6",
+            customerName: "Priya Verma",
+            customerEmail: "priya@example.com",
+            date: "10 Sep 2026",
+            amount: 50,
+            status: "active"
+        },
+
+        {
+            id: "BK-1003",
+            lotNumber: "A-11",
+            customerName: "Amit Kumar",
+            customerEmail: "amit@example.com",
+            date: "09 Sep 2026",
+            amount: 50,
+            status: "completed"
+        },
+
+        {
+            id: "BK-1004",
+            lotNumber: "A-12",
+            customerName: "Neha Singh",
+            customerEmail: "neha@example.com",
+            date: "09 Sep 2026",
+            amount: 50,
+            status: "completed"
+        },
+
+        {
+            id: "BK-1005",
+            lotNumber: "A-14",
+            customerName: "Vikas Gupta",
+            customerEmail: "vikas@example.com",
+            date: "08 Sep 2026",
+            amount: 50,
+            status: "cancelled"
+        },
+
+        {
+            id: "BK-1006",
+            lotNumber: "B-06",
+            customerName: "Anjali Mehta",
+            customerEmail: "anjali@example.com",
+            date: "08 Sep 2026",
+            amount: 75,
+            status: "completed"
+        }
+
+    ],
+
+
+    customers: [
+
+        {
+            id: 1,
+            name: "Rahul Sharma",
+            email: "rahul@example.com",
+            phone: "+91 98765 43210",
+            joinedDate: "02 Sep 2026",
+            status: "verified"
+        },
+
+        {
+            id: 2,
+            name: "Priya Verma",
+            email: "priya@example.com",
+            phone: "+91 98765 11223",
+            joinedDate: "03 Sep 2026",
+            status: "verified"
+        },
+
+        {
+            id: 3,
+            name: "Amit Kumar",
+            email: "amit@example.com",
+            phone: "+91 98111 22334",
+            joinedDate: "04 Sep 2026",
+            status: "verified"
+        },
+
+        {
+            id: 4,
+            name: "Neha Singh",
+            email: "neha@example.com",
+            phone: "+91 98999 55667",
+            joinedDate: "05 Sep 2026",
+            status: "suspended"
+        },
+
+        {
+            id: 5,
+            name: "Vikas Gupta",
+            email: "vikas@example.com",
+            phone: "+91 97654 33221",
+            joinedDate: "06 Sep 2026",
+            status: "verified"
+        },
+
+        {
+            id: 6,
+            name: "Anjali Mehta",
+            email: "anjali@example.com",
+            phone: "+91 98700 44556",
+            joinedDate: "07 Sep 2026",
+            status: "verified"
+        }
+
+    ]
+
+};
+
+
+/* =========================================================
+   LOAD / SAVE DATA
+   ========================================================= */
+
+function loadData(key, defaultValue) {
+
+    try {
+
+        const data = localStorage.getItem(key);
+
+        if (!data) {
+
+            localStorage.setItem(
+                key,
+                JSON.stringify(defaultValue)
+            );
+
+            return JSON.parse(
+                JSON.stringify(defaultValue)
+            );
+        }
+
+        return JSON.parse(data);
+
+    } catch (error) {
+
+        return JSON.parse(
+            JSON.stringify(defaultValue)
+        );
+
+    }
+
+}
+
+
+function saveData(key, value) {
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+
+}
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+   ========================================================= */
+
+let lots = loadData(
+    STORAGE.lots,
+    defaultData.lots
+);
+
+let bookings = loadData(
+    STORAGE.bookings,
+    defaultData.bookings
+);
+
+let customers = loadData(
+    STORAGE.customers,
+    defaultData.customers
+);
+
+let session = loadData(
+    STORAGE.session,
+    null
+);
+
+let loginMode = "customer";
+
+let currentTab = "overview";
+
+let selectedSlot = null;
+let customerView = "slots";
+let selectedPaymentMethod = "upi";
+let paymentDetails = "";
+let lastBooking = null;
+
+let bookingSearch = "";
+
+let customerSearch = "";
+
+
+/* =========================================================
+   BASIC HELPERS
+   ========================================================= */
+
+const app = document.getElementById("app");
+
+function escapeHTML(value) {
+
+    return String(value).replace(
+        /[&<>"']/g,
+
+        function (character) {
+
+            const map = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            };
+
+            return map[character];
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   TOAST MESSAGE
+   ========================================================= */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer =
+        setTimeout(function () {
+
+            toast.classList.remove("show");
+
+        }, 2300);
+
+}
+
+
+/* =========================================================
+   MAIN RENDER
+   ========================================================= */
+
+function render() {
+
+    if (!session) {
+
+        renderLogin();
+
+        return;
+
+    }
+
+    if (session.role === "customer") {
+
+        renderCustomer();
+
+        return;
+
+    }
+
+    renderAdmin();
+
+}
+
+
+/* =========================================================
+   LOGIN SCREEN
+   ========================================================= */
+
+function renderLogin() {
+
+    app.innerHTML = `
+
+        <div class="login-page">
+
+            <div class="login-card">
+
+                <div class="login-logo">
+                    ✦
+                    <sup>+</sup>
+                </div>
+
+
+                <h1 class="login-title">
+                    Smart Parking Access
+                </h1>
+
+
+                <p class="login-sub">
+                    Reserve your automated spot instantly in Indian Rupee.
+                </p>
+
+
+                <div class="login-tabs">
+
+                    <button
+                        class="login-tab ${loginMode === "customer" ? "active" : ""}"
+                        onclick="loginMode='customer'; renderLogin();"
+                    >
+                        ♙ Customer
+                    </button>
+
+
+                    <button
+                        class="login-tab ${loginMode === "admin" ? "active" : ""}"
+                        onclick="loginMode='admin'; renderLogin();"
+                    >
+                        ♢ Admin
+                    </button>
+
+                </div>
+
+
+                <form
+                    class="login-form"
+                    onsubmit="handleLogin(event)"
+                >
+
+                    ${
+                        loginMode === "customer"
+
+                        ?
+
+                        `
+
+                        <div class="field">
+
+                            <label>
+                                Full Name
+                            </label>
+
+                            <input
+                                id="customerName"
+                                value="Rahul Sharma"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Email Address
+                            </label>
+
+                            <input
+                                id="customerEmail"
+                                type="email"
+                                value="rahul@example.com"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Phone Number
+                            </label>
+
+                            <input
+                                id="customerPhone"
+                                value="+91 98765 43210"
+                                required
+                            >
+
+                        </div>
+
+
+                        <button
+                            class="primary-btn login-submit"
+                        >
+                            Enter Customer Portal
+                        </button>
+
+                        `
+
+                        :
+
+                        `
+
+                        <div class="field">
+
+                            <label>
+                                Admin ID
+                            </label>
+
+                            <input
+                                id="adminId"
+                                value="admin"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Password
+                            </label>
+
+                            <input
+                                id="adminPassword"
+                                type="password"
+                                value="admin"
+                                required
+                            >
+
+                        </div>
+
+
+                        <button
+                            class="primary-btn login-submit"
+                        >
+                            Access Admin Panel
+                        </button>
+
+
+                        <p class="demo-note">
+                            Demo login:
+                            <b>admin</b> /
+                            <b>admin</b>
+                        </p>
+
+                        `
+                    }
+
+                </form>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+function handleLogin(event) {
+
+    event.preventDefault();
+
+
+    if (loginMode === "admin") {
+
+        const id =
+            document.getElementById("adminId").value;
+
+        const password =
+            document.getElementById("adminPassword").value;
+
+
+        if (
+            id !== "admin" ||
+            password !== "admin"
+        ) {
+
+            showToast(
+                "Invalid admin credentials."
+            );
+
+            return;
+
+        }
+
+
+        session = {
+            role: "admin",
+            name: "Admin"
+        };
+
+    }
+
+    else {
+
+        const name =
+            document.getElementById("customerName").value.trim();
+
+        const email =
+            document.getElementById("customerEmail").value.trim();
+
+        const phone =
+            document.getElementById("customerPhone").value.trim();
+
+
+        session = {
+            role: "customer",
+            name,
+            email,
+            phone
+        };
+
+
+        const alreadyExists =
+            customers.some(
+                customer =>
+                    customer.email.toLowerCase() ===
+                    email.toLowerCase()
+            );
+
+
+        if (!alreadyExists) {
+
+            customers.push({
+
+                id: Date.now(),
+
+                name,
+
+                email,
+
+                phone,
+
+                joinedDate: "10 Sep 2026",
+
+                status: "verified"
+
+            });
+
+            saveData(
+                STORAGE.customers,
+                customers
+            );
+
+        }
+
+    }
+
+
+    saveData(
+        STORAGE.session,
+        session
+    );
+
+
+    render();
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+function renderHeader() {
+
+    return `
+
+        <header class="topbar">
+
+            <div class="topbar-inner">
+
+
+                <div class="brand">
+
+                    <div class="brand-mark">
+                        ▱
+                    </div>
+
+
+                    <div>
+
+                        <div class="brand-name">
+                            SMART PARK
+                        </div>
+
+                        <span class="brand-sub">
+                            FUTURISTIC AUTONOMOUS PARKING
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button
+                        class="outline-btn"
+                        onclick="
+                            loginMode='${session.role === "admin" ? "customer" : "admin"}';
+                            session=null;
+                            render();
+                        "
+                    >
+
+                        ${
+                            session.role === "admin"
+                            ? "♢ Admin Portal"
+                            : "♙ " + escapeHTML(session.name)
+                        }
+
+                    </button>
+
+
+                    <button
+                        class="outline-btn danger-text"
+                        onclick="logout()"
+                    >
+                        ⇥ Logout
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </header>
+
+    `;
+
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+function logout() {
+
+    session = null;
+
+    localStorage.removeItem(
+        STORAGE.session
+    );
+
+    loginMode = "customer";
+
+    selectedSlot = null;
+
+    render();
+
+}
+
+
+/* =========================================================
+   CUSTOMER PORTAL
+   ========================================================= */
+
+function renderCustomer() {
+
+    if (customerView === "payment") {
+        renderPaymentPage();
+        return;
+    }
+
+    if (customerView === "ticket") {
+        renderTicketPage();
+        return;
+    }
+
+    app.innerHTML = `
+
+        ${renderHeader()}
+
+        <main class="main customer-main">
+
+            <div class="customer-head">
+
+                <div>
+                    <h1 class="page-title">Select a Parking Slot</h1>
+                    <p class="page-subtitle">
+                        Click on any available green spot below to book your parking.
+                    </p>
+                </div>
+
+                <div class="status-key">
+                    <span class="key-item">
+                        <i class="key-circle"></i>
+                        Available
+                    </span>
+                    <span class="key-item">
+                        <i class="key-circle booked"></i>
+                        Booked
+                    </span>
+                    <span class="key-item">
+                        <i class="key-circle selected"></i>
+                        Selected
+                    </span>
+                </div>
+
+            </div>
+
+            <section class="slot-panel">
+
+                <div class="slot-grid">
+                    ${lots.map(function (lot) {
+                        return `
+                            <button
+                                type="button"
+                                class="slot ${lot.status} ${selectedSlot === lot.id ? "selected" : ""}"
+                                data-slot-id="${lot.id}"
+                                ${lot.status !== "available" ? "disabled" : ""}
+                            >
+                                <span class="car-icon">▱</span>
+                                <strong>${escapeHTML(lot.number)}</strong>
+                                ${lot.status === "available" ? `<span class="price-pill">₹${lot.price}</span>` : ""}
+                            </button>
+                        `;
+                    }).join("")}
+                </div>
+
+            </section>
+
+        </main>
+
+        <div class="booking-bar fixed-booking-bar">
+            <div class="booking-info">
+                ${selectedSlot ? `
+                    <span class="selected-label">SELECTED SLOT</span>
+                    <strong>
+                        ${escapeHTML(lots.find(lot => lot.id === selectedSlot).number)}
+                        <span class="selected-price">- ₹${lots.find(lot => lot.id === selectedSlot).price}</span>
+                    </strong>
+                ` : `
+                    <span class="selected-label">SELECTED SLOT</span>
+                    <strong>Select an available spot</strong>
+                `}
+            </div>
+
+            <div class="booking-actions">
+                <button class="secondary-btn" onclick="cancelSlotSelection()">Cancel</button>
+                <button class="primary-btn payment-btn" ${selectedSlot ? "" : "disabled"} onclick="openPayment()">
+                    Proceed to Secure Payment
+                </button>
+            </div>
+        </div>
+
+    `;
+
+    // Use real event listeners instead of relying only on inline onclick handlers.
+    // This keeps the slot buttons working reliably after every re-render.
+    document.querySelectorAll(".slot.available[data-slot-id]").forEach(function (button) {
+        button.addEventListener("click", function () {
+            selectSlot(Number(this.dataset.slotId));
+        });
+    });
+
+}
+
+
+function cancelSlotSelection() {
+    selectedSlot = null;
+    renderCustomer();
+}
+
+
+function openPayment() {
+    const lot = lots.find(item => item.id === selectedSlot);
+
+    if (!lot || lot.status !== "available") {
+        showToast("Please select an available parking spot.");
+        return;
+    }
+
+    customerView = "payment";
+    selectedPaymentMethod = "upi";
+    paymentDetails = "";
+    renderCustomer();
+}
+
+
+function renderPaymentPage() {
+    const lot = lots.find(item => item.id === selectedSlot);
+
+    if (!lot) {
+        customerView = "slots";
+        renderCustomer();
+        return;
+    }
+
+    app.innerHTML = `
+        <main class="checkout-page">
+            <section class="checkout-card">
+
+                <div class="checkout-title-row">
+                    <span class="checkout-icon">▭</span>
+                    <h1>Secure Checkout</h1>
+                </div>
+
+                <div class="checkout-summary">
+                    <div class="summary-row">
+                        <span>Parking Spot:</span>
+                        <strong>${escapeHTML(lot.number)}</strong>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row amount-row">
+                        <span>Total Amount:</span>
+                        <strong>₹${Number(lot.price).toFixed(2)}</strong>
+                    </div>
+                </div>
+
+                <label class="checkout-label">Choose Payment Method</label>
+
+                <div class="payment-methods">
+                    <button class="payment-method ${selectedPaymentMethod === "upi" ? "active" : ""}" onclick="setPaymentMethod('upi')">⚡ UPI</button>
+                    <button class="payment-method ${selectedPaymentMethod === "card" ? "active" : ""}" onclick="setPaymentMethod('card')">▣ Card</button>
+                    <button class="payment-method ${selectedPaymentMethod === "netbanking" ? "active" : ""}" onclick="setPaymentMethod('netbanking')">▥ NetBank</button>
+                </div>
+
+                ${renderPaymentFields()}
+
+                <div class="checkout-actions">
+                    <button class="secondary-btn checkout-back" onclick="backToSlots()">Back</button>
+                    <button class="primary-btn pay-btn" onclick="processPayment()">
+                        Pay ₹${Number(lot.price).toFixed(2)}
+                    </button>
+                </div>
+
+                <p class="demo-payment-note">Demo checkout • No real money is charged</p>
+
+            </section>
+        </main>
+    `;
+}
+
+
+function renderPaymentFields() {
+    if (selectedPaymentMethod === "card") {
+        return `
+            <div class="payment-fields">
+                <label class="checkout-label">Card Number</label>
+                <input id="paymentInput" class="payment-input" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" value="${escapeHTML(paymentDetails)}" oninput="paymentDetails=this.value">
+                <div class="payment-mini-row">
+                    <input class="payment-input mini" placeholder="MM / YY">
+                    <input class="payment-input mini" placeholder="CVV" maxlength="4" type="password">
+                </div>
+            </div>
+        `;
+    }
+
+    if (selectedPaymentMethod === "netbanking") {
+        return `
+            <div class="payment-fields">
+                <label class="checkout-label">Select Bank</label>
+                <select id="paymentInput" class="payment-input" onchange="paymentDetails=this.value">
+                    <option value="">Choose your bank</option>
+                    <option>State Bank of India</option>
+                    <option>HDFC Bank</option>
+                    <option>ICICI Bank</option>
+                    <option>Axis Bank</option>
+                    <option>Punjab National Bank</option>
+                </select>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="payment-fields">
+            <label class="checkout-label">UPI ID / VPA</label>
+            <input id="paymentInput" class="payment-input" placeholder="rahul@oksbi" value="${escapeHTML(paymentDetails)}" oninput="paymentDetails=this.value">
+            <div class="upi-chips">
+                <button type="button" onclick="useUPI('Google Pay')">Google Pay</button>
+                <button type="button" onclick="useUPI('PhonePe')">PhonePe</button>
+                <button type="button" onclick="useUPI('Paytm')">Paytm</button>
+            </div>
+        </div>
+    `;
+}
+
+
+function setPaymentMethod(method) {
+    if (paymentDetails) {
+        const input = document.getElementById("paymentInput");
+        if (input) paymentDetails = input.value;
+    }
+    selectedPaymentMethod = method;
+    paymentDetails = "";
+    renderCustomer();
+}
+
+
+function useUPI(provider) {
+    paymentDetails = session.email ? session.email.split("@")[0] + "@" + provider.toLowerCase().replace(/\s/g, "") : "";
+    const input = document.getElementById("paymentInput");
+    if (input) input.value = paymentDetails;
+}
+
+
+function backToSlots() {
+    customerView = "slots";
+    renderCustomer();
+}
+
+
+function processPayment() {
+    const lot = lots.find(item => item.id === selectedSlot);
+
+    if (!lot || lot.status !== "available") {
+        showToast("Spot is no longer available.");
+        customerView = "slots";
+        renderCustomer();
+        return;
+    }
+
+    const input = document.getElementById("paymentInput");
+    if (input) paymentDetails = input.value.trim();
+
+    if (!paymentDetails) {
+        showToast("Please enter your payment details.");
+        if (input) input.focus();
+        return;
+    }
+
+    lot.status = "booked";
+
+    const newBooking = {
+        id: "BK-" + Date.now(),
+        lotNumber: lot.number,
+        customerName: session.name,
+        customerEmail: session.email,
+        date: formatBookingDate(),
+        ticketDate: formatTicketDate(),
+        amount: Number(lot.price),
+        status: "active",
+        paymentMethod: selectedPaymentMethod,
+        paymentStatus: "paid",
+        ticketId: "b-" + Date.now()
+    };
+
+    bookings.unshift(newBooking);
+
+    saveData(STORAGE.lots, lots);
+    saveData(STORAGE.bookings, bookings);
+
+    lastBooking = newBooking;
+    selectedSlot = null;
+    paymentDetails = "";
+    customerView = "ticket";
+    renderCustomer();
+}
+
+
+function formatTicketDate() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+
+function formatBookingDate() {
+    const d = new Date();
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = d.toLocaleString("en-IN", { month: "short" });
+    return `${day} ${month} ${d.getFullYear()}`;
+}
+
+
+function renderTicketPage() {
+    if (!lastBooking) {
+        customerView = "slots";
+        renderCustomer();
+        return;
+    }
+
+    app.innerHTML = `
+        <main class="ticket-page">
+            <section class="ticket-card">
+                <div class="ticket-success-head">
+                    <div class="success-check">✓</div>
+                    <h1>BOOKED</h1>
+                    <p>Digital QR Ticket Generated &amp; Emailed</p>
+                </div>
+
+                <div class="ticket-body">
+                    <div class="ticket-top-meta">
+                        <div>
+                            <span>SPOT NUMBER</span>
+                            <strong>${escapeHTML(lastBooking.lotNumber)}</strong>
+                        </div>
+                        <div class="ticket-amount">
+                            <span>AMOUNT PAID</span>
+                            <strong>₹${Number(lastBooking.amount).toFixed(2)}</strong>
+                        </div>
+                    </div>
+
+                    <div class="customer-ticket-box">
+                        <span>CUSTOMER NAME</span>
+                        <strong>${escapeHTML(lastBooking.customerName)}</strong>
+                    </div>
+
+                    <div class="ticket-details-row">
+                        <div>
+                            <span>BOOKING DATE</span>
+                            <strong>${escapeHTML(lastBooking.date)}</strong>
+                        </div>
+                        <div class="ticket-booking-id">
+                            <span>BOOKING ID</span>
+                            <strong>${escapeHTML(lastBooking.ticketId)}</strong>
+                        </div>
+                    </div>
+
+                    <div class="ticket-qr-area">
+                        <div id="ticketQR" class="ticket-qr"></div>
+                        <p>Scan this QR code at the automated parking gate.</p>
+                        <strong>Pass successfully sent to ${escapeHTML(lastBooking.customerEmail)}</strong>
+                    </div>
+                </div>
+            </section>
+
+            <button class="book-another-btn" onclick="bookAnotherSpot()">Book Another Spot</button>
+        </main>
+    `;
+
+    setTimeout(function () {
+        const qr = document.getElementById("ticketQR");
+        if (qr && typeof QRCode !== "undefined") {
+            new QRCode(qr, {
+                text: JSON.stringify({
+                    bookingId: lastBooking.ticketId,
+                    spot: lastBooking.lotNumber,
+                    customer: lastBooking.customerName,
+                    date: lastBooking.date,
+                    amount: lastBooking.amount
+                }),
+                width: 128,
+                height: 128,
+                correctLevel: QRCode.CorrectLevel.M
+            });
+        } else if (qr) {
+            qr.innerHTML = `<div class="qr-fallback">QR<br>PASS</div>`;
+        }
+    }, 30);
+}
+
+
+function bookAnotherSpot() {
+    lastBooking = null;
+    selectedSlot = null;
+    customerView = "slots";
+    renderCustomer();
+}
+
+
+/* =========================================================
+   SELECT SLOT
+   ========================================================= */
+
+function selectSlot(id) {
+
+    const lot =
+        lots.find(
+            item => item.id === id
+        );
+
+
+    if (!lot) return;
+
+
+    if (lot.status !== "available") {
+
+        showToast(
+            "This parking spot is not available."
+        );
+
+        return;
+
+    }
+
+
+    selectedSlot = id;
+
+    renderCustomer();
+
+}
+
+
+/* =========================================================
+   BOOK PARKING
+   ========================================================= */
+
+/* =========================================================
+   ADMIN DASHBOARD
+   ========================================================= */
+
+function renderAdmin() {
+
+    const available =
+        lots.filter(
+            lot => lot.status === "available"
+        ).length;
+
+
+    const booked =
+        lots.filter(
+            lot => lot.status === "booked"
+        ).length;
+
+
+    const maintenance =
+        lots.filter(
+            lot => lot.status === "maintenance"
+        ).length;
+
+
+    const activeCustomers =
+        customers.filter(
+            customer =>
+                customer.status === "verified"
+        ).length;
+
+
+    app.innerHTML = `
+
+        ${renderHeader()}
+
+
+        <main class="main">
+
+
+            <div class="page-head">
+
+
+                <div>
+
+                    <h1 class="page-title">
+                        Admin Control Panel
+                    </h1>
+
+                    <p class="page-subtitle">
+                        Manage parking spots, live bookings, and revenue analytics.
+                    </p>
+
+                </div>
+
+
+                <div class="glass-tabs">
+
+
+                    <button
+                        class="tab ${currentTab === "overview" ? "active" : ""}"
+                        onclick="
+                            currentTab='overview';
+                            renderAdmin();
+                        "
+                    >
+                        ▥ Overview
+                    </button>
+
+
+                    <button
+                        class="tab ${currentTab === "lots" ? "active" : ""}"
+                        onclick="
+                            currentTab='lots';
+                            renderAdmin();
+                        "
+                    >
+                        ⌖ Manage Lots
+                    </button>
+
+
+                    <button
+                        class="tab ${currentTab === "bookings" ? "active" : ""}"
+                        onclick="
+                            currentTab='bookings';
+                            renderAdmin();
+                        "
+                    >
+                        ▤ Bookings
+                    </button>
+
+
+                    <button
+                        class="tab ${currentTab === "customers" ? "active" : ""}"
+                        onclick="
+                            currentTab='customers';
+                            renderAdmin();
+                        "
+                    >
+                        ♟ Customers
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+            ${
+                currentTab === "overview"
+                ? renderOverview(
+                    available,
+                    booked,
+                    maintenance,
+                    activeCustomers
+                )
+
+                : currentTab === "lots"
+                ? renderLots()
+
+                : currentTab === "bookings"
+                ? renderBookings()
+
+                : renderCustomers()
+            }
+
+
+        </main>
+
+    `;
+
+
+    if (currentTab === "overview") {
+
+        drawRevenueChart();
+
+    }
+
+}
+
+
+/* =========================================================
+   OVERVIEW
+   ========================================================= */
+
+function renderOverview(
+    available,
+    booked,
+    maintenance,
+    activeCustomers
+) {
+
+    const todayRevenue =
+        bookings
+            .filter(
+                booking =>
+                    booking.status !== "cancelled" &&
+                    booking.date === "10 Sep 2026"
+            )
+            .reduce(
+                (total, booking) =>
+                    total + Number(booking.amount),
+                0
+            );
+
+
+    const total =
+        lots.length;
+
+
+    const availablePercentage =
+        Math.round(
+            available /
+            Math.max(total, 1) *
+            100
+        );
+
+
+    const bookedPercentage =
+        Math.round(
+            booked /
+            Math.max(total, 1) *
+            100
+        );
+
+
+    const maintenancePercentage =
+        Math.round(
+            maintenance /
+            Math.max(total, 1) *
+            100
+        );
+
+
+    return `
+
+        <section class="grid-4">
+
+
+            <div class="stat-card cyan">
+
+                <div>
+
+                    <div class="stat-label">
+                        Today's Revenue
+                    </div>
+
+                    <div class="stat-value">
+                        ₹${todayRevenue.toFixed(2)}
+                    </div>
+
+                </div>
+
+
+                <div class="stat-icon">
+                    ▥
+                </div>
+
+            </div>
+
+
+            <div class="stat-card green">
+
+                <div>
+
+                    <div class="stat-label">
+                        Available Spots
+                    </div>
+
+                    <div class="stat-value">
+
+                        ${available}
+
+                        <small>
+                            / ${total}
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <div class="stat-card amber">
+
+                <div>
+
+                    <div class="stat-label">
+                        Booked Spots
+                    </div>
+
+                    <div class="stat-value">
+                        ${booked}
+                    </div>
+
+                </div>
+
+
+                <div class="stat-icon">
+                    ▱
+                </div>
+
+            </div>
+
+
+            <div class="stat-card indigo">
+
+                <div>
+
+                    <div class="stat-label">
+                        Active Customers
+                    </div>
+
+                    <div class="stat-value">
+                        ${activeCustomers}
+                    </div>
+
+                </div>
+
+
+                <div class="stat-icon">
+                    ♙
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <section class="chart-grid">
+
+
+            <div class="panel">
+
+                <h3 class="panel-title">
+
+                    <span class="ico">
+                        ▥
+                    </span>
+
+                    Daily Revenue (₹)
+
+                </h3>
+
+
+                <div class="chart-box">
+
+                    <canvas id="revenueCanvas"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h3 class="panel-title">
+
+                    <span class="ico">
+                        ◔
+                    </span>
+
+                    Slot Occupancy Status
+
+                </h3>
+
+
+                <div class="donut-wrap">
+
+                    <div
+                        class="donut"
+                        style="
+                            background:
+                            conic-gradient(
+                                #10b981 0 ${availablePercentage}%,
+                                #f59e0b ${availablePercentage}% ${availablePercentage + bookedPercentage}%,
+                                #ef4444 ${availablePercentage + bookedPercentage}% 100%
+                            );
+                        "
+                    ></div>
+
+
+                    <div class="donut-center">
+
+                        <strong>
+                            ${availablePercentage}%
+                        </strong>
+
+                        <span>
+                            Available
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="legend">
+
+                    <span>
+                        <i class="dot green"></i>
+                        Available ${availablePercentage}%
+                    </span>
+
+
+                    <span>
+                        <i class="dot amber"></i>
+                        Booked ${bookedPercentage}%
+                    </span>
+
+
+                    <span>
+                        <i class="dot red"></i>
+                        Maintenance ${maintenancePercentage}%
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    `;
+
+}
+
+
+/* =========================================================
+   REVENUE GRAPH
+========================================================= */
+
+function drawRevenueChart() {
+
+    const canvas =
+        document.getElementById(
+            "revenueCanvas"
+        );
+
+
+    if (!canvas) return;
+
+
+    const container =
+        canvas.parentElement;
+
+
+    const ratio =
+        window.devicePixelRatio || 1;
+
+
+    const width =
+        container.clientWidth;
+
+
+    const height =
+        container.clientHeight;
+
+
+    canvas.width =
+        width * ratio;
+
+
+    canvas.height =
+        height * ratio;
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    ctx.scale(
+        ratio,
+        ratio
+    );
+
+
+    const values = [
+        220,
+        340,
+        290,
+        410,
+        520,
+        450,
+        310
+    ];
+
+
+    const labels = [
+        "09-04",
+        "09-05",
+        "09-06",
+        "09-07",
+        "09-08",
+        "09-09",
+        "09-10"
+    ];
+
+
+    const left =
+        45;
+
+    const right =
+        15;
+
+    const top =
+        12;
+
+    const bottom =
+        38;
+
+
+    const chartWidth =
+        width - left - right;
+
+
+    const chartHeight =
+        height - top - bottom;
+
+
+    const maxValue =
+        550;
+
+
+    ctx.font =
+        "11px Inter";
+
+
+    ctx.strokeStyle =
+        "#e3ebef";
+
+
+    ctx.fillStyle =
+        "#687386";
+
+
+    for (
+        let i = 0;
+        i <= 4;
+        i++
+    ) {
+
+        const y =
+            top +
+            chartHeight -
+            i *
+            chartHeight /
+            4;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            left,
+            y
+        );
+
+        ctx.lineTo(
+            width - right,
+            y
+        );
+
+        ctx.stroke();
+
+
+        ctx.fillText(
+            Math.round(
+                maxValue *
+                i /
+                4
+            ),
+            8,
+            y + 4
+        );
+
+    }
+
+
+    const gap =
+        chartWidth /
+        values.length;
+
+
+    const barWidth =
+        Math.min(
+            38,
+            gap * 0.55
+        );
+
+
+    values.forEach(
+        function (value, index) {
+
+            const x =
+                left +
+                index *
+                gap +
+                (gap - barWidth) /
+                2;
+
+
+            const barHeight =
+                chartHeight *
+                value /
+                maxValue;
+
+
+            const y =
+                top +
+                chartHeight -
+                barHeight;
+
+
+            ctx.fillStyle =
+                "#12a8d8";
+
+
+            ctx.beginPath();
+
+            ctx.roundRect(
+                x,
+                y,
+                barWidth,
+                barHeight,
+                8
+            );
+
+            ctx.fill();
+
+
+            ctx.fillStyle =
+                "#687386";
+
+
+            ctx.textAlign =
+                "center";
+
+
+            ctx.fillText(
+                labels[index],
+                x + barWidth / 2,
+                height - 13
+            );
+
+        }
+    );
+
+
+    ctx.textAlign =
+        "start";
+
+}
+
+
+/* =========================================================
+   MANAGE LOTS
+   ========================================================= */
+
+function renderLots() {
+
+    return `
+
+        <section class="panel form-panel">
+
+
+            <h3 class="panel-title">
+
+                <span class="ico">
+                    ＋
+                </span>
+
+                Add New Parking Lot
+
+            </h3>
+
+
+            <form
+                class="form-grid"
+                onsubmit="addParkingLot(event)"
+            >
+
+
+                <div class="field">
+
+                    <label>
+                        Lot Number
+                    </label>
+
+                    <input
+                        id="lotNumber"
+                        placeholder="e.g. A-16"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                        id="lotLocation"
+                        placeholder="Zone 1, Level 2"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Price (₹)
+                    </label>
+
+                    <input
+                        id="lotPrice"
+                        type="number"
+                        min="1"
+                        placeholder="50"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                >
+                    Create Lot
+                </button>
+
+
+            </form>
+
+        </section>
+
+
+        <section class="panel">
+
+
+            <div class="section-heading">
+
+
+                <h3>
+                    Manage Existing Lots
+                    (${lots.length})
+                </h3>
+
+
+                <input
+                    class="search"
+                    placeholder="Search lots..."
+                    oninput="filterLots(this.value)"
+                >
+
+
+            </div>
+
+
+            <div
+                id="lotsGrid"
+                class="lot-grid"
+            >
+
+                ${createLotCards(lots)}
+
+            </div>
+
+
+        </section>
+
+    `;
+
+}
+
+
+/* =========================================================
+   LOT CARDS
+   ========================================================= */
+
+function createLotCards(lotArray) {
+
+    if (lotArray.length === 0) {
+
+        return `
+            <div class="empty">
+                No lots found.
+            </div>
+        `;
+
+    }
+
+
+    return lotArray.map(
+        function (lot) {
+
+            return `
+
+                <div class="lot-card">
+
+
+                    <div class="lot-top">
+
+
+                        <span class="lot-number">
+                            ${escapeHTML(lot.number)}
+                        </span>
+
+
+                        <span
+                            class="status ${lot.status}"
+                        >
+                            ${lot.status}
+                        </span>
+
+
+                    </div>
+
+
+                    <div class="lot-location">
+                        ${escapeHTML(lot.location)}
+                    </div>
+
+
+                    <div class="lot-price">
+                        ₹${lot.price}
+                    </div>
+
+
+                    <div class="lot-actions">
+
+
+                        ${
+                            lot.status === "maintenance"
+
+                            ?
+
+                            `
+                            <button
+                                class="small-btn ok"
+                                onclick="
+                                    changeLotStatus(
+                                        ${lot.id},
+                                        'available'
+                                    )
+                                "
+                            >
+                                ✓ Available
+                            </button>
+                            `
+
+                            :
+
+                            `
+                            <button
+                                class="small-btn warn"
+                                onclick="
+                                    changeLotStatus(
+                                        ${lot.id},
+                                        'maintenance'
+                                    )
+                                "
+                            >
+                                ! Maintenance
+                            </button>
+                            `
+                        }
+
+
+                        <button
+                            class="small-btn delete"
+                            onclick="
+                                deleteLot(${lot.id})
+                            "
+                        >
+                            × Delete
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+        }
+    ).join("");
+
+}
+
+
+/* =========================================================
+   FILTER LOTS
+   ========================================================= */
+
+function filterLots(search) {
+
+    const grid =
+        document.getElementById(
+            "lotsGrid"
+        );
+
+
+    if (!grid) return;
+
+
+    const query =
+        search.toLowerCase();
+
+
+    const filtered =
+        lots.filter(
+            function (lot) {
+
+                return (
+                    lot.number +
+                    " " +
+                    lot.location +
+                    " " +
+                    lot.status
+                )
+                .toLowerCase()
+                .includes(query);
+
+            }
+        );
+
+
+    grid.innerHTML =
+        createLotCards(
+            filtered
+        );
+
+}
+
+
+/* =========================================================
+   ADD LOT
+   ========================================================= */
+
+function addParkingLot(event) {
+
+    event.preventDefault();
+
+
+    const number =
+        document
+            .getElementById("lotNumber")
+            .value
+            .trim()
+            .toUpperCase();
+
+
+    const location =
+        document
+            .getElementById("lotLocation")
+            .value
+            .trim();
+
+
+    const price =
+        Number(
+            document
+                .getElementById("lotPrice")
+                .value
+        );
+
+
+    const exists =
+        lots.some(
+            lot =>
+                lot.number === number
+        );
+
+
+    if (exists) {
+
+        showToast(
+            "Lot already exists."
+        );
+
+        return;
+
+    }
+
+
+    lots.push({
+
+        id:
+            Date.now(),
+
+        number,
+
+        location,
+
+        price,
+
+        status:
+            "available"
+
+    });
+
+
+    saveData(
+        STORAGE.lots,
+        lots
+    );
+
+
+    renderAdmin();
+
+
+    showToast(
+        `${number} created successfully.`
+    );
+
+}
+
+
+/* =========================================================
+   CHANGE LOT STATUS
+   ========================================================= */
+
+function changeLotStatus(
+    id,
+    newStatus
+) {
+
+    const lot =
+        lots.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!lot) return;
+
+
+    if (
+        lot.status === "booked" &&
+        newStatus === "maintenance"
+    ) {
+
+        showToast(
+            "Booked spot cannot enter maintenance."
+        );
+
+        return;
+
+    }
+
+
+    lot.status =
+        newStatus;
+
+
+    saveData(
+        STORAGE.lots,
+        lots
+    );
+
+
+    renderAdmin();
+
+
+    showToast(
+        `${lot.number}: ${newStatus}`
+    );
+
+}
+
+
+/* =========================================================
+   DELETE LOT
+   ========================================================= */
+
+function deleteLot(id) {
+
+    const lot =
+        lots.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!lot) return;
+
+
+    if (lot.status === "booked") {
+
+        showToast(
+            "Booked spots cannot be deleted."
+        );
+
+        return;
+
+    }
+
+
+    const confirmation =
+        confirm(
+            `Delete ${lot.number}?`
+        );
+
+
+    if (!confirmation) return;
+
+
+    lots =
+        lots.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveData(
+        STORAGE.lots,
+        lots
+    );
+
+
+    renderAdmin();
+
+}
+
+
+/* =========================================================
+   BOOKINGS
+   ========================================================= */
+
+function renderBookings() {
+
+    const filteredBookings =
+        bookings.filter(
+            function (booking) {
+
+                return (
+
+                    booking.id +
+                    " " +
+                    booking.lotNumber +
+                    " " +
+                    booking.customerName +
+                    " " +
+                    booking.customerEmail
+
+                )
+                .toLowerCase()
+                .includes(
+                    bookingSearch.toLowerCase()
+                );
+
+            }
+        );
+
+
+    return `
+
+        <section class="panel">
+
+
+            <div class="section-heading">
+
+
+                <h3>
+                    All Bookings
+                    (${filteredBookings.length})
+                </h3>
+
+
+                <input
+                    class="search"
+                    value="${escapeHTML(bookingSearch)}"
+                    placeholder="Search customer or spot..."
+                    oninput="
+                        bookingSearch=this.value;
+                        renderAdmin();
+                    "
+                >
+
+
+            </div>
+
+
+            <div class="table-wrap">
+
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Booking ID
+                            </th>
+
+                            <th>
+                                Spot
+                            </th>
+
+                            <th>
+                                Customer
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        ${
+                            filteredBookings.length
+
+                            ?
+
+                            filteredBookings
+                                .map(
+                                    function (booking) {
+
+                                        return `
+
+                                            <tr>
+
+
+                                                <td class="id">
+                                                    ${escapeHTML(booking.id)}
+                                                </td>
+
+
+                                                <td>
+                                                    <strong>
+                                                        ${escapeHTML(booking.lotNumber)}
+                                                    </strong>
+                                                </td>
+
+
+                                                <td>
+
+                                                    <strong>
+                                                        ${escapeHTML(booking.customerName)}
+                                                    </strong>
+
+                                                    <br>
+
+                                                    <small>
+                                                        ${escapeHTML(booking.customerEmail)}
+                                                    </small>
+
+                                                </td>
+
+
+                                                <td>
+                                                    ${escapeHTML(booking.date)}
+                                                </td>
+
+
+                                                <td class="money">
+                                                    ₹${Number(booking.amount).toFixed(2)}
+                                                </td>
+
+
+                                                <td>
+
+                                                    <span
+                                                        class="status ${
+                                                            booking.status === "active"
+                                                            ? "available"
+                                                            : booking.status === "completed"
+                                                            ? "booked"
+                                                            : "maintenance"
+                                                        }"
+                                                    >
+                                                        ${booking.status}
+                                                    </span>
+
+                                                </td>
+
+
+                                                <td>
+
+                                                    ${
+                                                        booking.status === "active"
+
+                                                        ?
+
+                                                        `
+                                                        <button
+                                                            class="action-btn"
+                                                            onclick="
+                                                                cancelBooking(
+                                                                    '${booking.id}'
+                                                                )
+                                                            "
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                        `
+
+                                                        :
+
+                                                        "—"
+                                                    }
+
+                                                </td>
+
+
+                                            </tr>
+
+                                        `;
+
+                                    }
+                                )
+                                .join("")
+
+                            :
+
+                            `
+                            <tr>
+
+                                <td
+                                    colspan="7"
+                                    class="empty"
+                                >
+                                    No bookings found.
+                                </td>
+
+                            </tr>
+                            `
+                        }
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CANCEL BOOKING
+   ========================================================= */
+
+function cancelBooking(id) {
+
+    const booking =
+        bookings.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!booking) return;
+
+
+    booking.status =
+        "cancelled";
+
+
+    const lot =
+        lots.find(
+            item =>
+                item.number ===
+                booking.lotNumber
+        );
+
+
+    if (lot) {
+
+        lot.status =
+            "available";
+
+    }
+
+
+    saveData(
+        STORAGE.bookings,
+        bookings
+    );
+
+
+    saveData(
+        STORAGE.lots,
+        lots
+    );
+
+
+    renderAdmin();
+
+
+    showToast(
+        "Booking cancelled."
+    );
+
+}
+
+
+/* =========================================================
+   CUSTOMERS
+   ========================================================= */
+
+function renderCustomers() {
+
+    const filteredCustomers =
+        customers.filter(
+            function (customer) {
+
+                return (
+
+                    customer.name +
+                    " " +
+                    customer.email +
+                    " " +
+                    customer.phone
+
+                )
+                .toLowerCase()
+                .includes(
+                    customerSearch.toLowerCase()
+                );
+
+            }
+        );
+
+
+    return `
+
+        <section class="panel">
+
+
+            <div class="section-heading">
+
+
+                <h3>
+                    Registered Customers
+                    (${filteredCustomers.length})
+                </h3>
+
+
+                <input
+                    class="search"
+                    value="${escapeHTML(customerSearch)}"
+                    placeholder="Search customers..."
+                    oninput="
+                        customerSearch=this.value;
+                        renderAdmin();
+                    "
+                >
+
+
+            </div>
+
+
+            <div class="table-wrap">
+
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Joined Date
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        ${
+                            filteredCustomers
+                                .map(
+                                    function (customer) {
+
+                                        return `
+
+                                            <tr>
+
+
+                                                <td>
+                                                    <strong>
+                                                        ${escapeHTML(customer.name)}
+                                                    </strong>
+                                                </td>
+
+
+                                                <td
+                                                    style="color:#079bbd"
+                                                >
+                                                    ${escapeHTML(customer.email)}
+                                                </td>
+
+
+                                                <td>
+                                                    ${escapeHTML(customer.phone)}
+                                                </td>
+
+
+                                                <td>
+                                                    ${escapeHTML(customer.joinedDate)}
+                                                </td>
+
+
+                                                <td>
+
+                                                    <span
+                                                        class="status ${
+                                                            customer.status === "verified"
+                                                            ? "available"
+                                                            : "maintenance"
+                                                        }"
+                                                    >
+                                                        ${customer.status}
+                                                    </span>
+
+                                                </td>
+
+
+                                                <td>
+
+                                                    <button
+                                                        class="action-btn ${
+                                                            customer.status === "verified"
+                                                            ? ""
+                                                            : "verify"
+                                                        }"
+                                                        onclick="
+                                                            toggleCustomer(
+                                                                ${customer.id}
+                                                            )
+                                                        "
+                                                    >
+
+                                                        ${
+                                                            customer.status === "verified"
+                                                            ? "Suspend"
+                                                            : "Verify"
+                                                        }
+
+                                                    </button>
+
+                                                </td>
+
+
+                                            </tr>
+
+                                        `;
+
+                                    }
+                                )
+                                .join("")
+
+                        }
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+    `;
+
+}
+
+
+/* =========================================================
+   VERIFY / SUSPEND CUSTOMER
+   ========================================================= */
+
+function toggleCustomer(id) {
+
+    const customer =
+        customers.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!customer) return;
+
+
+    if (
+        customer.status ===
+        "verified"
+    ) {
+
+        customer.status =
+            "suspended";
+
+    }
+
+    else {
+
+        customer.status =
+            "verified";
+
+    }
+
+
+    saveData(
+        STORAGE.customers,
+        customers
+    );
+
+
+    renderAdmin();
+
+
+    showToast(
+        `${customer.name}: ${customer.status}`
+    );
+
+}
+
+
+/* =========================================================
+   WINDOW RESIZE
+   ========================================================= */
+
+window.addEventListener(
+    "resize",
+    function () {
+
+        if (
+            session &&
+            session.role === "admin" &&
+            currentTab === "overview"
+        ) {
+
+            drawRevenueChart();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   START APPLICATION
+   ========================================================= */
+
+render();
+    </script>
+</body>
+</html>
